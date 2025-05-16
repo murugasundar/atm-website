@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balance Check</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        
+        body{
+            height: 100vh;
+            background: linear-gradient(to right,white,gray);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .frm{
+            /* height: 200px; */
+            padding: 20px;
+            width: 600px;
+            background: linear-gradient(to right,gray,white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px;
+            box-shadow: 0px 0px 10px black;
+        }
+
+        form{
+            font-size: 20px;
+            text-shadow: 0px 0px 10px whitesmoke;
+        }
+
+        button{
+            margin-left: 20px;
+            margin-top: 20px;
+            width: 200px;
+            border-radius: 7px;
+            padding: 10px;
+            font-weight: bold;
+           
+            &&:hover{
+                background-color: black;
+                color: white;
+            }
+        }
+
+        #btn{
+            padding: 10px;
+            width: 80px;
+            margin-left: 1000px;
+            border-radius: 10px;
+            &&:hover{
+                background-color: black;
+                color: white;
+            }
+        }
+        
+        h3{
+            color: black;
+            font-size: 25px;
+            text-shadow: 0px 0px 30px white;
+        }
+
+        p{
+            margin-top: 20px;
+            font-size: 20px;
+        }
+    </style>
+
+</head>
+<body>
+    <h2>Check Balance</h2>
+
+    <div class="frm">
+        
+
+    {% if name and acc %}
+        <h3>Welcome {{ name }} (Account: {{ acc }})</h3>
+        <p>Your Balance is: ₹{{ balance }}</p>
+    {% else %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Check Balance</button>
+        </form>
+    {% endif %}
+    </div>
+    <a href="/home"><button id="btn">HOME</button></a>
+
+</body>
+</html>

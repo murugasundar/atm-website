@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        
+        body{
+            height: 100vh;
+            background: linear-gradient(to right,white,gray);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 100px;
+        }
+
+        .frm{
+            /* height: 200px; */
+            padding: 20px;
+            width: 400px;
+            background: linear-gradient(to right,black,white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px;
+            box-shadow: 0px 0px 10px black;
+        }
+
+        form{
+            font-size: 20px;
+            text-shadow: 0px 0px 10px whitesmoke;
+        }
+
+        button{
+            margin-left: 80px;
+            margin-top: 20px;
+            width: 100px;
+            border-radius: 7px;
+            padding: 10px;
+            font-weight: bold;
+           
+            &&:hover{
+                background-color: black;
+                color: white;
+            }
+        }
+
+        #btn{
+            padding: 10px;
+            margin-left: 1000px;
+        }
+        
+        h2{
+            text-shadow: 0px 0px 10px black;
+        }
+
+        p{
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+        <h2>Welcome {{ name }} ({{acc}})</h2>
+
+    <div class="frm">
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Deposit</button>
+        </form>
+        
+        <!-- {% if res %}
+            <p>{{ res }} </p>  <!-- Display deposit success message -->
+        <!-- {% endif %} --> 
+        
+        {% if amount %}
+            <p>You deposited {{ amount }} successfully.</p>  <!-- Display amount deposited -->
+        {% endif %}
+        
+        {% if form.errors %}
+            <div class="errors">
+                {% for field in form %}
+                    {% for error in field.errors %}
+                        <p>{{ error }}</p>  <!-- Display form errors -->
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+    </div>
+    <a href="/home"><button id="btn">HOME</button></a>
+    
+      
+</body>
+</html>

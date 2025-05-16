@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        
+        body{
+            height: 100vh;
+            background: linear-gradient(to right,white,gray);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .frm{
+            /* height: 200px; */
+            padding: 20px;
+            /* width: 400px; */
+            background: linear-gradient(to right,gray,white);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border-radius: 20px;
+            box-shadow: 0px 0px 10px black;
+        }
+
+        form{
+            font-size: 20px;
+            text-shadow: 0px 0px 10px whitesmoke;
+        }
+
+        #sub{
+            margin-left: 10px;
+            margin-top: 20px;
+            width: 100px;
+            border-radius: 7px;
+            padding: 10px;
+            font-weight: bold;
+           
+            &&:hover{
+                background-color: black;
+                color: white;
+            }
+        }
+
+        #btn{
+            padding: 10px;
+            margin-left: 1000px;
+            border-radius: 10px;
+            &&:hover{
+                background-color: black;
+                color: white;
+            }
+        }
+        
+        h2{
+            text-shadow: 0px 0px 10px black;
+        }
+
+        h1{
+            margin-top: 20px;
+        }
+    </style>
+
+</head>
+<body>
+
+     {% if acc and name %}
+            <h2>Welcome {{ name }} ({{ acc }})</h2>
+        {% endif %}
+     <div class="frm">
+       
+        <form action="" method="post" align="center" >
+            {% csrf_token %}
+            {{ form.as_p }}
+    
+            <input type="submit" value="submit" id="sub">
+        </form>
+
+        {% if res %}
+            <h1>{{res}}</h1>
+        {% endif %}
+    </div>
+    <a href="/home"><button id="btn">HOME</button></a>
+
+</body>
+</html>
